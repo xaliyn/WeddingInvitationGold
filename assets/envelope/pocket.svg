@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+<defs>
+<filter id="paper" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency=".9 .75" numOctaves="3" seed="7" result="n"/>
+  <feDiffuseLighting in="n" surfaceScale="1.1" lighting-color="#fff" result="lit"><feDistantLight azimuth="235" elevation="58"/></feDiffuseLighting>
+  <feColorMatrix in="lit" values="0 0 0 0 .55  0 0 0 0 .52  0 0 0 0 .48  -1 0 0 0 .92" result="g"/>
+  <feComposite in="g" in2="SourceGraphic" operator="in"/>
+</filter>
+<filter id="lift" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx=".6" dy="1.4" stdDeviation="1.1" flood-color="#5a4d3c" flood-opacity=".22"/></filter>
+<filter id="fold" x="-5%" y="-10%" width="110%" height="120%"><feDropShadow dx="0" dy="-1.2" stdDeviation="2.2" flood-color="#4a4036" flood-opacity=".16"/></filter>
+<pattern id="liner" width="36" height="36" patternUnits="userSpaceOnUse">
+  <rect width="36" height="36" fill="#fbfaf8"/>
+  <g fill="none" stroke="#e3ddd3" stroke-width=".8">
+    <circle cx="18" cy="18" r="7"/><circle cx="18" cy="18" r="2.2"/>
+    <path d="M18 11c2-4 6-4 6 0M18 25c-2 4-6 4-6 0M11 18c-4-2-4-6 0-6M25 18c4 2 4 6 0 6"/>
+    <circle cx="0" cy="0" r="4"/><circle cx="36" cy="0" r="4"/><circle cx="0" cy="36" r="4"/><circle cx="36" cy="36" r="4"/>
+  </g>
+  <g fill="#e6e0d7"><circle cx="18" cy="4" r="1"/><circle cx="18" cy="32" r="1"/><circle cx="4" cy="18" r="1"/><circle cx="32" cy="18" r="1"/></g>
+</pattern>
+
+</defs>
+
+<linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".85" stop-color="#f4f2ee"/><stop offset="1" stop-color="#eeebe6"/></linearGradient>
+<linearGradient id="rg" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#f6f4f0"/><stop offset=".85" stop-color="#eeebe6"/><stop offset="1" stop-color="#e8e5df"/></linearGradient>
+<linearGradient id="btm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#fbfaf8"/><stop offset="1" stop-color="#f1efea"/></linearGradient>
+<linearGradient id="vsh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3026" stop-opacity=".10"/><stop offset=".2" stop-color="#3a3026" stop-opacity="0"/></linearGradient>
+<path d="M0 6Q0 0 6 4L300.0 235L300.0 420H6Q0 420 0 414Z" fill="url(#lg)"/>
+<path d="M600 6Q600 0 594 4L300.0 235L300.0 420H594Q600 420 600 414Z" fill="url(#rg)"/>
+<path d="M0 6Q0 0 6 4L300.0 235L594 4Q600 0 600 6V414Q600 420 594 420H6Q0 420 0 414Z" fill="url(#vsh)"/>
+<path d="M3 417L268 262Q300 240 332 262L597 417Q597 420 592 420H8Q3 420 3 417Z" fill="url(#btm)" filter="url(#fold)"/>
+<path d="M3 417L268 262Q300 240 332 262L597 417" fill="none" stroke="#fff" stroke-width="1.4" transform="translate(0 1.2)"/>
+<path d="M3 417L268 262Q300 240 332 262L597 417" fill="none" stroke="#e3ddd4" stroke-width=".9"/>
+<path d="M1.5 7L300.0 235L598.5 7" fill="none" stroke="#fff" stroke-width="1.6"/>
+<path d="M1.5 9L300.0 237L598.5 9" fill="none" stroke="#e6e1d9" stroke-width=".8"/>
+<path d="M0 6Q0 0 6 4L300.0 235L594 4Q600 0 600 6V414Q600 420 594 420H6Q0 420 0 414Z" fill="#fff" filter="url(#paper)" style="mix-blend-mode:multiply"/>
+<path d="M6 419.4H594" stroke="#d9d3c9" stroke-width="1.2"/>
+<path d="M0 6Q0 0 6 4L300.0 235L594 4Q600 0 600 6V414Q600 420 594 420H6Q0 420 0 414Z" fill="none" stroke="#ddd6cb" stroke-width=".9"/>
+</svg>

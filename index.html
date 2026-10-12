@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6efe1">
+<title>Алтантулга &amp; Пүрэвсүрэн · Хуримын урилга</title>
+<meta name="description" content="Борын Алтантулга, Даваадоржийн Пүрэвсүрэн нарын хуримын урилга. 2026 оны 11 дүгээр сарын 13, Баянгол зочид буудал.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Алтантулга &amp; Пүрэвсүрэн · Хуримын урилга">
+<meta property="og:description" content="2026 оны 11 дүгээр сарын 13 · Баасан гараг · 18:00 · Баянгол зочид буудал">
+<meta property="og:image" content="assets/seal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/envelope/flap-out.svg">
+<link rel="preload" as="image" href="assets/envelope/pocket.svg">
+<link rel="preload" as="image" href="assets/photo.webp">
+<style>
+:root{
+  --night:#2a2624;
+  --night-2:#3a3431;
+  --paper:#f6f1e7;
+  --paper-2:#efe7d8;
+  --linen:#e9e2d5;
+  --pearl:#fffcf5;
+  --navy:#6b4e16;
+  --blue:#9a7422;
+  --slate:#5e5444;
+  --frame:#d4b25c;
+  --ink:#3d3426;
+  --ink-soft:#7a6e5c;
+  --wine:#b08a2e;
+  --wine-deep:#6c1419;
+  --gold:#d4b25c;
+  --gold-soft:#e8d29a;
+  --baby:#e6c86e;
+  --baby-deep:#d6b04a;
+  --baby-ink:#4a3a12;
+  --line:rgba(107,78,22,.15);
+  --serif:"Open Sans","Helvetica Neue",Arial,sans-serif;
+  --sans:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--linen);color:var(--ink);
+  font-family:var(--serif);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.locked{overflow:hidden;height:100vh}
+.bg{position:fixed;inset:0;z-index:-1;background:url(assets/background.webp) center/cover no-repeat,#f7f4ee}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(240,226,190,.10),rgba(240,226,190,0) 40%,rgba(225,200,140,.14))}
+img{display:block;max-width:100%}
+button,input,textarea{font:inherit;color:inherit}
+a{color:inherit}
+
+/* ───────────── Intro / envelope ───────────── */
+.intro{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+  background:url(assets/background.webp) center/cover no-repeat,#f7f4ee;
+  transition:opacity 1s ease,visibility 1s;padding:24px 16px;
+}
+.intro::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 50%,rgba(255,255,255,0),rgba(70,52,20,.18));pointer-events:none}
+.intro.gone{opacity:0;visibility:hidden}
+.intro-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:28px;width:100%}
+.intro-eyebrow{
+  font-family:var(--sans);font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--wine);
+  text-align:center;opacity:.9;transition:opacity .6s;
+}
+.intro.opening .intro-eyebrow,.intro.opening .intro-actions{opacity:0;pointer-events:none}
+
+/* Дугтуй: 600×420 их бие, assets/envelope/*.svg давхаргууд */
+.intro-inner{--w:min(80vw,620px,calc((100vh - 160px) / 1.22));--w:min(80vw,620px,calc((100svh - 160px) / 1.22))}
+.scene{width:var(--w);transform:rotate(3deg);transition:transform 1.3s cubic-bezier(.45,0,.2,1)}
+.intro.letter-up .scene{transform:rotate(3deg) translateY(min(11vh,90px))}
+.intro-eyebrow{margin-bottom:calc(var(--w) * -.38)}
+.envelope{
+  position:relative;width:100%;aspect-ratio:600/420;margin-top:50%;container-type:inline-size;
+  transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .9s;
+}
+.envelope-shadow{
+  position:absolute;left:2%;right:2%;bottom:-6%;height:16%;border-radius:50%;
+  background:rgba(70,52,20,.22);filter:blur(26px);z-index:0;
+}
+.env-layer{position:absolute;inset:0;pointer-events:none;background:center/100% 100% no-repeat}
+.env-back{z-index:1;background-image:url(assets/envelope/back.svg);filter:drop-shadow(0 2px 2px rgba(40,34,28,.14)) drop-shadow(0 14px 22px rgba(70,52,20,.22))}
+.env-pocket{z-index:3;background-image:url(assets/envelope/pocket.svg);filter:drop-shadow(0 -1px 2px rgba(60,50,40,.10))}
+.flap-wrap{position:absolute;inset:0;z-index:4;pointer-events:none;perspective:1600px;filter:drop-shadow(0 1px 1px rgba(60,50,40,.18)) drop-shadow(0 5px 7px rgba(60,50,40,.14))}
+.flap{
+  position:absolute;left:0;right:0;top:0;height:71.43%;
+  transform-origin:50% 0;transform-style:preserve-3d;
+  transition:transform 1s cubic-bezier(.45,0,.25,1);
+}
+.flap-face{position:absolute;inset:0;background:center/100% 100% no-repeat;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flap-out{background-image:url(assets/envelope/flap-out.svg)}
+.flap-in{background-image:url(assets/envelope/flap-in.svg);transform:rotateY(180deg)}
+.letter{
+  position:absolute;left:6%;right:6%;top:4%;height:91%;z-index:2;
+  background:var(--pearl);border-radius:2px;font-family:"Open Sans",var(--sans);
+  box-shadow:0 1px 2px rgba(0,0,0,.1),0 -4px 18px rgba(0,0,0,.06);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding-top:6.4cqw;text-align:center;
+  transition:transform 1.3s cubic-bezier(.45,0,.2,1);
+}
+/* жижиг карт — алтан металл өнгө (загварын дагуу) */
+.letter::before{content:"";position:absolute;inset:2.8cqw 3cqw;border:1.5px solid transparent;pointer-events:none;
+  border-image:linear-gradient(135deg,#c9a24e 0%,#f3dc95 30%,#a8792a 55%,#ecd18a 80%,#b88a35 100%) 1}
+.letter .l-title{font-size:3.1cqw;line-height:1.2;letter-spacing:.02em;background:linear-gradient(90deg,#f1d98f 0%,#c99a3e 22%,#a5772a 45%,#e2bf68 62%,#b0802c 82%,#ecd088 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#b88b34}
+.letter .l-mono{width:9cqw;margin:1.4cqw 0 1.6cqw;filter:none}
+.letter .l-pat{font-weight:700;font-size:2cqw;letter-spacing:.14em;line-height:1.2;background:linear-gradient(90deg,#f1d98f 0%,#c99a3e 22%,#a5772a 45%,#e2bf68 62%,#b0802c 82%,#ecd088 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#b88b34}
+.letter .l-name{font-weight:700;font-size:4.5cqw;letter-spacing:.1em;line-height:1.2;margin-top:.3cqw;background:linear-gradient(90deg,#f1d98f 0%,#c99a3e 22%,#a5772a 45%,#e2bf68 62%,#b0802c 82%,#ecd088 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#b88b34}
+.letter .l-amp{font-size:3cqw;line-height:1;margin:1.2cqw 0 1.6cqw;background:linear-gradient(90deg,#f1d98f 0%,#c99a3e 22%,#a5772a 45%,#e2bf68 62%,#b0802c 82%,#ecd088 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#b88b34}
+.letter .l-rule{width:42cqw;height:1.5px;background:linear-gradient(90deg,#c9a24e,#a5772a 50%,#c9a24e);margin:3.2cqw 0 2.6cqw}
+.letter .l-date{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:3.4cqw;line-height:1;font-variant-numeric:lining-nums;background:linear-gradient(90deg,#f1d98f 0%,#c99a3e 22%,#a5772a 45%,#e2bf68 62%,#b0802c 82%,#ecd088 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#b88b34}
+
+/* Фото: 1) дугтуйн дотор цухуйна  2) бүрэн гаргаж аваад дугтуйн дээр баруун доод талд тавина.
+   Элементийн хэмжээ = эцсийн байрлал; дотор байх үеийг translate/scale-аар илэрхийлнэ. */
+.env-photo{
+  --tx:-15.3%;--ty0:4.2%;--tyT:-44.1%;--ts:.75;--tyL:-97%;--sL:.75;
+  position:absolute;z-index:2;left:45%;top:12.36%;width:72%;aspect-ratio:1448/1086;pointer-events:none;
+  transform:translate(var(--tx),var(--ty0)) perspective(1400px) rotateX(0deg) rotateY(0deg) scale(var(--ts)) rotate(-2deg);
+  filter:drop-shadow(0 1px 1px rgba(60,45,20,.28)) drop-shadow(0 6px 8px rgba(70,52,20,.18)) drop-shadow(0 18px 26px rgba(70,52,20,.22));
+}
+.intro.photo-out .env-photo{animation:photoPlace 2.5s cubic-bezier(.4,0,.25,1) forwards}
+@keyframes photoPlace{
+  0%  {z-index:2;transform:translate(var(--tx),var(--ty0)) perspective(1400px) rotateX(0deg) rotateY(0deg) scale(var(--ts)) rotate(-2deg)}
+  22% {z-index:2;transform:translate(var(--tx),var(--tyT)) perspective(1400px) rotateX(0deg) rotateY(0deg) scale(var(--ts)) rotate(-6deg)}
+  48% {z-index:2;transform:translate(var(--tx),var(--tyL)) perspective(1400px) rotateX(0deg) rotateY(0deg) scale(var(--sL)) rotate(-10deg)}
+  49% {z-index:5;transform:translate(var(--tx),var(--tyL)) perspective(1400px) rotateX(0deg) rotateY(0deg) scale(var(--sL)) rotate(-10deg)}
+  82% {z-index:5;transform:translate(1.5%,1.5%) perspective(1400px) rotateX(9deg) rotateY(-7deg) scale(1) rotate(-11.5deg)}
+  100%{z-index:5;transform:translate(0%,0%) perspective(1400px) rotateX(6deg) rotateY(-5deg) scale(1) rotate(-10deg)}
+}
+@media (max-width:600px){
+  .env-photo{--tx:-3.3%;--ty0:8.1%;--tyT:-50%;--ts:.9;--tyL:-113%;--sL:.9;left:42%;top:16.86%;width:60%}
+}
+.env-photo img{display:block;width:100%;height:100%}
+.intro.flap-open .flap{transform:rotateX(180deg)}
+.intro.flap-back .flap-wrap{z-index:1}
+.intro.flap-back .env-back{z-index:0}
+.intro.letter-up .letter{transform:translateY(-78%)}
+.intro.leaving .envelope{transform:translateY(6%) scale(.96);opacity:0}
+
+.seal{
+  position:absolute;z-index:6;left:50%;top:60.5%;width:16%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border:0;padding:0;background:none;cursor:pointer;border-radius:50%;
+  filter:drop-shadow(0 1px 1px rgba(90,66,20,.35)) drop-shadow(0 4px 6px rgba(90,66,20,.25));transition:transform .5s cubic-bezier(.3,0,.2,1),opacity .4s;
+}
+.seal img{width:100%;height:100%}
+.seal:hover{transform:translate(-50%,-50%) scale(1.04)}
+.seal::after{
+  content:"";position:absolute;inset:-10%;border-radius:50%;border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 0 12px rgba(255,255,255,.5);animation:pulse 2.4s ease-out infinite;
+}
+.seal:focus-visible{outline:2px solid var(--baby-deep);outline-offset:6px}
+@keyframes pulse{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+.intro.opening .seal{pointer-events:none;transform:translate(-50%,-75%) scale(1.15);opacity:0}
+.intro.opening .seal::after{animation:none;opacity:0}
+
+.intro-actions{display:flex;flex-direction:column;align-items:center;gap:14px;transition:opacity .5s;margin-top:4vh}
+.btn-open{
+  display:inline-flex;align-items:center;gap:12px;padding:10px 24px;border-radius:999px;cursor:pointer;
+  background:var(--baby);color:var(--navy);border:1px solid var(--baby);box-shadow:0 6px 18px -8px rgba(110,80,20,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  font-family:"Open Sans",var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  transition:background .3s,border-color .3s;
+}
+.btn-open:hover{background:var(--baby-deep);border-color:var(--baby-deep)}
+.skip{
+  position:absolute;right:18px;bottom:18px;z-index:2;background:none;border:0;cursor:pointer;
+  font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(107,78,22,.6);
+}
+.skip:hover{color:var(--navy)}
+
+/* ───────────── Page ───────────── */
+main{opacity:0;transition:opacity 1.2s ease .1s}
+body.revealed main{opacity:1}
+.wrap{width:min(100% - 32px,760px);margin-inline:auto}
+section{padding:72px 0}
+.eyebrow{
+  display:block;font-family:var(--sans);font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--wine);
+}
+h2{font-weight:700;font-size:clamp(22px,4vw,32px);line-height:1.25;margin:.5em 0 .6em;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+h2 em{font-style:normal;color:var(--navy)}
+.center{text-align:center}
+
+/* Invitation card = the exact Canva design (image), with the drawn tulga's fire animated on top */
+.invite-section{padding-top:56px}
+.invite-card{
+  position:relative;background:#f8f8f8;
+  box-shadow:0 1px 2px rgba(90,66,20,.06),0 22px 60px -24px rgba(90,66,20,.35);
+}
+.invite-card .card-art{display:block;width:100%;height:auto}
+/* Тулга = алтан тулга, бодит галтай видео. Цагаан дэвсгэр нь картын өнгөнд уусна (multiply) */
+.invite-card .stove-video{
+  position:absolute;left:74.22%;top:64.87%;width:16.45%;aspect-ratio:490/936;height:auto;
+  mix-blend-mode:multiply;pointer-events:none;object-fit:contain;
+}
+.music{
+  position:fixed;left:14px;top:14px;z-index:70;width:44px;height:44px;border-radius:50%;cursor:pointer;
+  display:grid;place-items:center;border:1px solid rgba(212,178,92,.6);
+  background:rgba(255,252,245,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#9a7422;box-shadow:0 6px 16px -8px rgba(70,52,20,.45);transition:transform .2s;
+}
+.music[hidden]{display:none}
+.music:hover{transform:scale(1.05)}
+.music svg{width:20px;height:20px}
+.music .on{display:none}.music[aria-pressed="true"] .on{display:block}.music[aria-pressed="true"] .off{display:none}
+.music[aria-pressed="true"]::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(212,178,92,.5);animation:pulse 2.4s ease-out infinite}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Countdown */
+.countdown-section{background:radial-gradient(80% 120% at 15% 0%,rgba(255,255,255,.9),rgba(255,255,255,0) 60%),radial-gradient(70% 100% at 90% 100%,rgba(240,226,236,.5),rgba(240,226,236,0) 65%),linear-gradient(160deg,#fffdf8 0%,#f9f4ea 60%,#f4ecdc 100%);color:var(--navy);border-top:1px solid rgba(212,178,92,.35);border-bottom:1px solid rgba(212,178,92,.35)}
+.countdown-section .eyebrow{color:var(--blue)}
+.panel{background:var(--pearl);padding:clamp(36px,6vw,56px) clamp(20px,5vw,48px);box-shadow:0 18px 50px -24px rgba(70,52,20,.35)}
+.countdown-section h2{color:var(--navy)}
+.countdown-section h2 em{color:var(--navy)}
+.countdown-section .gold{color:#b5892c;background:linear-gradient(180deg,#e3c063 0%,#c49733 52%,#9a701f 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2vw,20px);max-width:620px;margin:30px auto 0}
+.unit{border:1px solid rgba(212,178,92,.55);background:rgba(255,255,255,.7);box-shadow:0 6px 16px -10px rgba(90,66,20,.25);padding:20px 4px 16px;text-align:center}
+.unit b{display:block;font-weight:300;color:var(--navy);font-size:clamp(38px,8vw,60px);line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.unit span{display:block;margin-top:10px;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue)}
+.countdown-done{font-size:22px;margin-top:24px}
+.countdown-date{margin-top:26px;color:var(--slate);letter-spacing:.06em}
+
+/* Program */
+.timeline{list-style:none;margin:36px 0 0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:96px;top:10px;bottom:10px;width:1px;background:var(--line)}
+.timeline li{display:grid;grid-template-columns:96px 1fr;gap:0 34px;padding:16px 0;position:relative}
+.timeline li::before{
+  content:"";position:absolute;left:92px;top:24px;width:9px;height:9px;border-radius:50%;
+  background:var(--pearl);border:1.5px solid var(--blue);
+}
+.timeline time{font-family:var(--sans);font-size:14px;letter-spacing:.12em;color:var(--blue);padding-top:3px;font-weight:500}
+.timeline h3{margin:0;font-weight:600;font-size:19px;line-height:1.4;color:var(--navy)}
+.timeline p{margin:3px 0 0;color:var(--slate)}
+
+/* Venue */
+.venue-card{background:var(--pearl);text-align:center;box-shadow:0 18px 50px -24px rgba(90,66,20,.3)}
+.venue-info{padding:48px 28px;display:flex;flex-direction:column;align-items:center}
+.venue-info h3{font-weight:700;font-size:clamp(22px,4vw,30px);letter-spacing:.1em;text-transform:uppercase;line-height:1.25;color:var(--navy);margin:12px 0 4px}
+.venue-info p{margin:0 0 26px;color:var(--slate);letter-spacing:.06em}
+.venue-info .btns{justify-content:center}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;cursor:pointer;
+  font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  border:1px solid var(--baby);background:var(--baby);color:var(--baby-ink);font-weight:500;transition:background .25s,color .25s,border-color .25s;
+}
+.btn:hover{background:var(--baby-deep);border-color:var(--baby-deep)}
+.btn.ghost{background:rgba(230,200,110,.18);color:var(--baby-ink);border-color:var(--baby-deep)}
+.btn.ghost:hover{background:rgba(230,200,110,.45)}
+.btn svg{width:15px;height:15px}
+.cal-wrap{position:relative}
+.cal-menu{
+  position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);z-index:5;min-width:230px;
+  background:var(--pearl);border:1px solid rgba(212,178,92,.55);border-radius:14px;padding:6px;text-align:left;
+  box-shadow:0 14px 34px -14px rgba(70,52,20,.4);
+}
+.cal-menu[hidden]{display:none}
+.cal-menu a{display:block;padding:11px 14px;border-radius:10px;text-decoration:none;color:var(--navy);font-size:15px;font-weight:600}
+.cal-menu a small{font-weight:400;color:var(--ink-soft)}
+.cal-menu a:hover,.cal-menu a:focus-visible{background:rgba(230,200,110,.22);outline:none}
+
+/* RSVP */
+.rsvp{background:var(--pearl);padding:clamp(36px,6vw,60px);box-shadow:0 18px 50px -24px rgba(60,40,30,.35);position:relative}
+.rsvp::before{content:"";position:absolute;inset:12px;border:1px solid rgba(212,178,92,.5);pointer-events:none}
+.rsvp > *{position:relative}
+.rsvp .lead{color:var(--ink-soft);margin:0 auto 30px;max-width:30em}
+.field{margin-bottom:24px;text-align:left}
+.field > label,.field legend{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;padding:0}
+fieldset{border:0;margin:0;padding:0}
+.input,textarea{
+  width:100%;background:transparent;border:0;border-bottom:1px solid rgba(107,78,22,.25);padding:8px 2px;font-size:17px;
+  border-radius:0;outline:none;transition:border-color .2s;
+}
+textarea{resize:vertical;min-height:90px;border:1px solid rgba(107,78,22,.2);padding:12px 14px;background:var(--pearl)}
+.input:focus,textarea:focus{border-color:var(--wine)}
+::placeholder{color:#b3a88f}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choices input{position:absolute;opacity:0;pointer-events:none}
+.choices span{
+  display:block;text-align:center;padding:12px;border:1px solid rgba(107,78,22,.22);cursor:pointer;font-size:15px;line-height:1.35;height:100%;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.choices input:checked + span{background:var(--baby);border-color:var(--baby-deep);color:var(--baby-ink)}
+.choices input:focus-visible + span{outline:2px solid var(--gold);outline-offset:2px}
+.guests[hidden]{display:none}
+.guest-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+.sub{display:block;font-size:14px;color:var(--ink);margin-bottom:8px}
+.sub small{font-size:12.5px;color:var(--ink-soft)}
+.select{
+  width:100%;appearance:none;-webkit-appearance:none;border:1px solid rgba(107,78,22,.22);border-radius:0;background:var(--pearl);
+  padding:12px 40px 12px 14px;font-size:16px;color:var(--ink);cursor:pointer;outline:none;font-variant-numeric:lining-nums;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%239a7422' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+.select:focus{border-color:var(--blue)}
+.total{margin:10px 0 0;font-size:14px;color:var(--blue)}
+.rsvp .submit{width:100%;padding:16px;margin-top:6px;font-size:12px}
+.result{margin-top:28px;text-align:left;border-top:1px solid var(--line);padding-top:24px}
+.result textarea{min-height:150px;font-size:16px}
+.result .btns{margin-top:12px}
+.toast{color:var(--wine);margin:10px 0 0;min-height:1.6em}
+.rsvp .submit:disabled{opacity:.6;cursor:wait}
+.thanks{padding:24px 0 8px}
+.rsvp.sent > .eyebrow,.rsvp.sent > h2,.rsvp.sent > .lead{display:none}
+.rsvp.sent .thanks{padding:12px 0}
+.thanks[hidden],#rsvp-form[hidden]{display:none}
+.thanks-title{margin:0;font-weight:700;font-size:clamp(20px,3.6vw,26px);letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+.thanks-text{margin:10px auto 0;max-width:28em;color:var(--slate)}
+
+footer{padding:26px 16px 28px;text-align:center;color:var(--ink-soft);background:var(--pearl)}
+footer .sign{margin:0;font-family:"Open Sans",var(--sans);line-height:1.35}
+footer .sign .regards{display:inline-block;font-size:clamp(15px,2.2vw,18px);color:#b9873a;background:linear-gradient(90deg,#f7dd92 0%,#e6c173 22%,#a2742f 52%,#b9873a 76%,#e3b25e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+footer .sign b{display:table;margin:0 auto;font-weight:700;font-size:clamp(16px,2.5vw,19px);color:#b9873a;background:linear-gradient(90deg,#f7dd92 0%,#e6c173 22%,#a2742f 52%,#b9873a 76%,#e3b25e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+footer .date{margin-top:6px;font-size:13px;letter-spacing:.06em;color:#a8813a}
+footer button{margin-top:6px;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a8813a;text-decoration:underline;text-underline-offset:4px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:640px){
+  body{font-size:15.5px}
+  section{padding:56px 0}
+  .timeline::before{left:62px}
+  .timeline li{grid-template-columns:62px 1fr;gap:0 24px}
+  .timeline li::before{left:58px;top:24px}
+  .timeline time{font-size:12px;letter-spacing:.06em}
+  .timeline h3{font-size:17px}
+  .venue-info{padding:36px 26px}
+  .unit{padding:14px 2px 12px}
+  .unit span{font-size:8.5px;letter-spacing:.14em}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="locked">
+<div class="bg" aria-hidden="true"></div>
+
+<!-- ───────── Дугтуй ───────── -->
+<audio id="music" src="assets/music.mp3" preload="auto" loop></audio>
+<button class="music" id="music-btn" type="button" aria-pressed="false" aria-label="Дуу асаах / унтраах">
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path d="M3 3l18 18"/></svg>
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+</button>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Хуримын урилга">
+  <div class="intro-inner">
+    <span class="intro-eyebrow">Эрхэм хүндэт танд</span>
+    <div class="scene">
+      <div class="envelope">
+        <div class="envelope-shadow"></div>
+        <div class="env-layer env-back"></div>
+        <div class="letter" aria-hidden="true">
+          <span class="l-title">ХУРИМЫН УРИЛГА</span>
+          <img class="l-mono" src="assets/card/monogram.png" alt="">
+          <span class="l-pat">БОРЫН</span>
+          <span class="l-name">АЛТАНТУЛГА</span>
+          <span class="l-amp">&amp;</span>
+          <span class="l-pat">ДАВААДОРЖИЙН</span>
+          <span class="l-name">ПҮРЭВСҮРЭН</span>
+          <span class="l-rule"></span>
+          <span class="l-date">2026.11.13</span>
+        </div>
+        <div class="env-layer env-pocket"></div>
+        <div class="env-photo" aria-hidden="true"><img src="assets/photo.webp" alt=""></div>
+        <div class="flap-wrap"><div class="flap"><div class="flap-face flap-out"></div><div class="flap-face flap-in"></div></div></div>
+        <button class="seal" id="seal" type="button" aria-label="Урилгыг нээх"><img src="assets/seal.png" alt=""></button>
+      </div>
+    </div>
+    <div class="intro-actions">
+      <button class="btn-open" id="open-btn" type="button">Урилга нээх</button>
+    </div>
+  </div>
+  <button class="skip" id="skip" type="button">Алгасах</button>
+</div>
+
+<main>
+  <!-- ───────── Урилгын цаас ───────── -->
+  <section class="invite-section" id="invitation">
+    <div class="wrap">
+      <article class="invite-card reveal" id="card">
+        <img class="card-art" src="assets/card/invitation.webp" srcset="assets/card/invitation.webp 1080w, assets/card/invitation@2x.webp 2160w" sizes="(max-width:760px) 100vw, 760px" width="1080" height="1350" alt="">
+        <video class="stove-video" src="assets/card/stove-fire.mp4" poster="assets/card/stove-fire-poster.webp" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+        <div class="sr-only">
+          <p>Хуримын урилга. Борын Алтантулга, Даваадоржийн Пүрэвсүрэн.</p>
+          <p>Эрхэм хүндэт Таныг бидний амьдралын хамгийн нандин мөч болох гэр бүл болсны баяр, хуримын ёслолд хүрэлцэн ирж, аз жаргалын ерөөлөө хайрлан, баяр баяслыг маань хамтдаа хуваалцахыг хүндэтгэн урьж байна.</p>
+          <p>2026 оны 11 дүгээр сарын 13, Баасан гараг, 18:00 цаг. Баянгол зочид буудал.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────── Тоолуур ───────── -->
+  <section class="countdown-section center" id="countdown">
+    <div class="wrap reveal">
+      <span class="eyebrow">Баярын өдөр хүртэл</span>
+      <h2>Бидний <em><span class="gold">алтан</span> мөч</em></h2>
+      <div class="countdown" id="timer" aria-live="off">
+        <div class="unit"><b data-u="d">00</b><span>Өдөр</span></div>
+        <div class="unit"><b data-u="h">00</b><span>Цаг</span></div>
+        <div class="unit"><b data-u="m">00</b><span>Минут</span></div>
+        <div class="unit"><b data-u="s">00</b><span>Секунд</span></div>
+      </div>
+      <p class="countdown-done" id="timer-done" hidden>Өнөөдөр бидний баярын өдөр!</p>
+      <p class="countdown-date">2026.11.13 · Баасан гараг · 18:00</p>
+    </div>
+  </section>
+
+  <!-- ───────── Хөтөлбөр ───────── -->
+  <section id="program">
+    <div class="wrap panel">
+      <div class="center reveal">
+        <span class="eyebrow">Баярын үдэш</span>
+        <h2>Хуримын өдрийн<br><em>хөтөлбөр</em></h2>
+      </div>
+      <ol class="timeline reveal">
+        <li><time>17:30</time><div><h3>Зочдыг угтах ёслол</h3><p>Хүндэт зочдыг хүлээн авч, дурсгалын зураг татуулах, тавтай морилох хүндэтгэлийн цаг.</p></div></li>
+        <li><time>18:00</time><div><h3>Хуримын албан ёсны ёслол</h3><p>Хосын тангараг өргөх, хуримын бөгж солилцох, гэр бүлийн батламж гардуулах нандин мөч.</p></div></li>
+        <li><time>18:40</time><div><h3>Баярын хүндэтгэлийн зоог</h3><p>Хуримын найрын нээлтийн хундага өргөж, аав ээж, ах дүүсийн хүндэтгэлийн үг эхэлнэ.</p></div></li>
+        <li><time>19:30</time><div><h3>Ерөөл ба урлагийн хөтөлбөр</h3><p>Хүндэт зочдын чин сэтгэлийн мэндчилгээ, баярын урлагийн тоглолт, сюрпризүүд.</p></div></li>
+        <li><time>20:30</time><div><h3>Хуримын бялуу ба анхны бүжиг</h3><p>Залуу хосын анхны бүжиг, хуримын бялуу зүсэх, баярын цэцэг шидэх ёслол.</p></div></li>
+        <li><time>21:00</time><div><h3>Үдшийн цэнгүүн</h3><p>Амьд хөгжим, чөлөөт бүжиг, мартагдашгүй үдшийн дурсамж.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───────── Ёслолын газар ───────── -->
+  <section id="venue" style="padding-top:0">
+    <div class="wrap">
+      <div class="venue-card reveal">
+        <div class="venue-info">
+          <span class="eyebrow">Ёслолын газар</span>
+          <h3>Баянгол зочид буудал</h3>
+          <p>Улаанбаатар хот</p>
+          <div class="btns">
+            <a class="btn" href="https://maps.app.goo.gl/utNft1wiXscEpShX6" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              Газрын зураг
+            </a>
+            <div class="cal-wrap">
+              <button class="btn ghost" id="add-cal" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="cal-menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+                Хуанлид нэмэх
+              </button>
+              <div class="cal-menu" id="cal-menu" hidden>
+                <a id="cal-google" target="_blank" rel="noopener">Google Calendar</a>
+                <a id="cal-apple" href="assets/hurim-2026-11-13.ics">Apple Calendar <small>(iPhone, Mac)</small></a>
+                <a id="cal-outlook" target="_blank" rel="noopener">Outlook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── Хариу ───────── -->
+  <section id="rsvp" style="padding-top:0">
+    <div class="wrap">
+      <div class="rsvp center reveal">
+        <span class="eyebrow">Хариу</span>
+        <h2>Та хүрэлцэн<br><em>ирэхээ мэдэгдэнэ үү</em></h2>
+        <p class="lead">Хариугаа урьдчилан мэдэгдвэл бид бэлтгэлээ сайн хангах боломжтой.</p>
+
+        <form id="rsvp-form" novalidate>
+          <div class="field">
+            <label for="name">Таны бүтэн нэр (Овог, нэр)</label>
+            <input class="input" id="name" name="name" placeholder="Овог, нэрээ бичнэ үү" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="field">
+            <label for="phone">Утасны дугаар</label>
+            <input class="input" id="phone" name="phone" type="tel" inputmode="numeric" placeholder="99xxxxxx" autocomplete="tel" maxlength="20">
+          </div>
+          <fieldset class="field">
+            <legend>Хуримд хүрэлцэн ирэх эсэх</legend>
+            <div class="choices">
+              <label><input type="radio" name="attend" value="yes" checked><span>Баяртайгаар оролцоно</span></label>
+              <label><input type="radio" name="attend" value="no"><span>Харамсалтай нь амжихгүй</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field guests" id="guests">
+            <legend>Хэдүүлээ хүрэлцэн ирэх вэ?</legend>
+            <div class="guest-grid">
+              <div>
+                <label class="sub" for="adults">Том хүн <small>(өөрийгөө оролцуулан)</small></label>
+                <select class="select" id="adults" name="adults"><option value="0">0</option><option value="1" selected>1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select>
+              </div>
+              <div>
+                <label class="sub" for="kids">Хүүхэд</label>
+                <select class="select" id="kids" name="kids"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select>
+              </div>
+            </div>
+            <p class="total" id="total" role="status">Нийт 1 хүн</p>
+          </fieldset>
+          <div class="field">
+            <label for="wish">Ерөөл, мэндчилгээ</label>
+            <textarea id="wish" name="wish" maxlength="600" placeholder="Хосуудад сэтгэлийн сайхан ерөөлөө илгээгээрэй."></textarea>
+          </div>
+          <button class="btn submit" type="submit">Хариу илгээх</button>
+          <p class="toast" id="form-msg" role="status"></p>
+        </form>
+
+        <div class="thanks" id="thanks" hidden>
+          <p class="thanks-title">Баярлалаа!</p>
+          <p class="thanks-text" id="thanks-text">Таны хариуг хүлээн авлаа.</p>
+        </div>
+
+        <div class="result" id="result" hidden>
+          <div class="field">
+            <label for="reply">Таны бэлдсэн хариу</label>
+            <textarea id="reply" readonly></textarea>
+          </div>
+          <div class="btns">
+            <button class="btn" type="button" id="copy">Хуулах</button>
+            <button class="btn ghost" type="button" id="share" hidden>Илгээх</button>
+          </div>
+          <p class="toast" id="copy-msg" role="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="sign"><span class="regards">Хүндэтгэсэн,</span><b>Борын Алтантулга</b><b>Даваадоржийн Пүрэвсүрэн</b></p>
+    <div class="date">2026 · 11 · 13</div>
+    <button type="button" id="replay">Дугтуйг дахин нээх</button>
+  </footer>
+</main>
+
+<script>
+(() => {
+  const WEDDING = new Date('2026-11-13T18:00:00+08:00');   // Улаанбаатарын цагаар
+  // Google Sheet-ийн Apps Script web app холбоос (google-apps-script.gs-ийг үз). Хоосон бол хариуг хуулж илгээх хувилбар ажиллана.
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx_hnqQqf829Y6rNC6f81zn_kwXvstMk6TSitUuIMuOCI1TW9B6NsLh6HlB6y5-_T3e/exec';
+  const body = document.body;
+  const intro = document.getElementById('intro');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timers = [];
+
+  /* ── Дугтуй нээх ── */
+  function reveal() {
+    body.classList.remove('locked');
+    body.classList.add('revealed');
+    intro.classList.add('gone');
+    setTimeout(() => { intro.hidden = true; }, 1000);
+    document.getElementById('invitation').scrollIntoView({ block: 'start' });
+  }
+  /* ── Дуу: урилгыг нээх товшилтоор эхэлнэ (хөтөч товшилтгүй дуу тоглуулахыг хориглодог); зүүн дээд буланд зогсооно ── */
+  const music = document.getElementById('music'), musicBtn = document.getElementById('music-btn');
+  const setMusic = on => musicBtn.setAttribute('aria-pressed', on);
+  const playMusic = () => music.play().then(() => setMusic(true)).catch(() => setMusic(false));
+  music.addEventListener('error', () => { musicBtn.hidden = true; });          // song file not added yet
+  music.addEventListener('play', () => setMusic(true));
+  music.addEventListener('pause', () => setMusic(false));
+  musicBtn.addEventListener('click', () => { musicStarted = true; music.paused ? playMusic() : (music.pause(), setMusic(false)); });
+  // Дугтуйг нээх үед (лац, "Урилга нээх", "Алгасах") дуу эхэлнэ.
+  let musicStarted = false;
+  const startMusicOnce = () => { if (!musicStarted) { musicStarted = true; playMusic(); } };
+
+  function openEnvelope() {
+    startMusicOnce();
+    if (intro.classList.contains('opening')) return;
+    if (reduce) { reveal(); return; }
+    const steps = [
+      [0,    'opening'],
+      [350,  'flap-open'],
+      [850,  'flap-back'],
+      [1300, 'letter-up'],
+      [2200, 'photo-out'],
+      [5700, 'leaving'],
+    ];
+    steps.forEach(([t, cls]) => timers.push(setTimeout(() => intro.classList.add(cls), t)));
+    timers.push(setTimeout(reveal, 6200));
+  }
+  function skip() { startMusicOnce(); timers.forEach(clearTimeout); reveal(); }
+  function replay() {
+    timers.forEach(clearTimeout); timers = [];
+    intro.className = 'intro';
+    intro.hidden = false;
+    body.classList.add('locked');
+    body.classList.remove('revealed');
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('seal').addEventListener('click', openEnvelope);
+  document.getElementById('open-btn').addEventListener('click', openEnvelope);
+  document.getElementById('skip').addEventListener('click', skip);
+  document.getElementById('replay').addEventListener('click', replay);
+
+  /* ── Галтай тулганы видео: харагдаж байхад л тоглуулна; хөдөлгөөн багасгасан бол зогсооно ── */
+  document.querySelectorAll('.stove-video').forEach(v => {
+    if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
+    new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(v);
+  });
+
+  /* ── Гарч ирэх анимэйшн ── */
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── Тоолуур ── */
+  const cells = {};
+  document.querySelectorAll('#timer [data-u]').forEach(b => cells[b.dataset.u] = b);
+  const pad = n => String(n).padStart(2, '0');
+  function tick() {
+    let diff = Math.max(0, WEDDING - Date.now());
+    if (diff === 0) {
+      document.getElementById('timer').hidden = true;
+      document.getElementById('timer-done').hidden = false;
+      return;
+    }
+    const s = Math.floor(diff / 1000);
+    cells.d.textContent = pad(Math.floor(s / 86400));
+    cells.h.textContent = pad(Math.floor(s % 86400 / 3600));
+    cells.m.textContent = pad(Math.floor(s % 3600 / 60));
+    cells.s.textContent = pad(s % 60);
+    setTimeout(tick, 1000 - Date.now() % 1000);
+  }
+  tick();
+
+  /* ── Хуанли ── */
+  const TITLE = 'Алтантулга & Пүрэвсүрэн · Хурим';
+  const PLACE = 'Баянгол зочид буудал, Улаанбаатар';
+  const START = '20261113T100000Z', END = '20261113T150000Z';   // 18:00–23:00 (UTC+8)
+  const enc = encodeURIComponent, DETAILS = 'Хуримын ёслол 18:00 цагт эхэлнэ. Зочдыг 17:30-аас угтан авна.';
+  document.getElementById('cal-google').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + enc(TITLE) + '&dates=' + START + '/' + END + '&location=' + enc(PLACE) + '&details=' + enc(DETAILS) + '&ctz=Asia/Ulaanbaatar';
+  document.getElementById('cal-outlook').href = 'https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent' +
+    '&subject=' + enc(TITLE) + '&startdt=2026-11-13T18:00:00%2B08:00&enddt=2026-11-13T23:00:00%2B08:00' + '&location=' + enc(PLACE) + '&body=' + enc(DETAILS);
+  const calBtn = document.getElementById('add-cal'), calMenu = document.getElementById('cal-menu');
+  const setCal = open => { calMenu.hidden = !open; calBtn.setAttribute('aria-expanded', open); };
+  calBtn.addEventListener('click', e => { e.stopPropagation(); setCal(calMenu.hidden); });
+  calMenu.addEventListener('click', () => setCal(false));
+  document.addEventListener('click', e => { if (!e.target.closest('.cal-wrap')) setCal(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') setCal(false); });
+
+  /* ── Хариу ── */
+  const form = document.getElementById('rsvp-form');
+  const guests = document.getElementById('guests');
+  const totalEl = document.getElementById('total');
+  const people = () => +form.adults.value + +form.kids.value;
+  const updateGuests = () => {
+    guests.hidden = form.attend.value !== 'yes';
+    totalEl.textContent = `Нийт ${people()} хүн`;
+  };
+  form.addEventListener('change', updateGuests);
+
+  const result = document.getElementById('result');
+  const reply = document.getElementById('reply');
+  const shareBtn = document.getElementById('share');
+  if (navigator.share) shareBtn.hidden = false;
+
+  const submitBtn = form.querySelector('.submit');
+  async function sendToSheet(data) {
+    const res = await fetch(SHEET_URL, { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'text/plain;charset=utf-8' } });
+    const out = await res.json();
+    if (!out.ok) throw new Error(out.error || 'failed');
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const msg = document.getElementById('form-msg');
+    if (!name) { msg.textContent = 'Нэрээ бичнэ үү.'; form.name.focus(); return; }
+    msg.textContent = '';
+    const wish = form.wish.value.trim();
+    const phone = form.phone.value.trim();
+    const coming = form.attend.value === 'yes';
+    if (coming && people() === 0) { msg.textContent = 'Хүрэлцэн ирэх хүний тоогоо сонгоно уу.'; form.adults.focus(); return; }
+    const adults = +form.adults.value, kids = +form.kids.value;
+    let text = `Сайн байна уу, Алтантулга, Пүрэвсүрэн!\n\n`;
+    text += coming
+      ? `Би ${name} байна. 2026.11.13-ны хуримын баярт тань баяртайгаар хүрэлцэн очно.\n` +
+        `Том хүн: ${adults}` + (kids ? `, хүүхэд: ${kids}` : '') + ` (нийт ${adults + kids} хүн)`
+      : `Би ${name} байна. Харамсалтай нь 2026.11.13-ны хуримын баярт тань хүрэлцэн очиж амжихгүй нь. Та бүхний аз жаргалыг чин сэтгэлээсээ хүсье.`;
+    if (phone) text += `\nУтас: ${phone}`;
+    if (wish) text += `\n\nЕрөөл: ${wish}`;
+
+    if (SHEET_URL) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Илгээж байна…';
+      try {
+        await sendToSheet({ name, phone, attend: form.attend.value, adults: coming ? adults : 0, kids: coming ? kids : 0, wish });
+        form.hidden = true;
+        form.closest('.rsvp').classList.add('sent');
+        document.getElementById('thanks-text').textContent = coming
+          ? 'Таны хариуг хүлээн авлаа. Хуримын баяраараа уулзахыг тэсэн ядан хүлээж байна.'
+          : 'Таны хариуг хүлээн авлаа. Халуун ерөөлд тань чин сэтгэлээсээ баярлалаа.';
+        const thanks = document.getElementById('thanks');
+        thanks.hidden = false;
+        thanks.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+        return;
+      } catch {
+        msg.textContent = 'Уучлаарай, илгээж чадсангүй. Доорх хариуг хуулж бидэнд мессежээр илгээнэ үү.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Хариу илгээх';
+      }
+    }
+    reply.value = text;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  document.getElementById('copy').addEventListener('click', async () => {
+    const msg = document.getElementById('copy-msg');
+    try { await navigator.clipboard.writeText(reply.value); }
+    catch { reply.select(); document.execCommand('copy'); }
+    msg.textContent = 'Хуулагдлаа. Урилга илгээсэн хүнд мессежээр явуулна уу.';
+  });
+  shareBtn.addEventListener('click', () => {
+    navigator.share({ text: reply.value }).catch(() => {});
+  });
+})();
+</script>
+</body>
+</html>

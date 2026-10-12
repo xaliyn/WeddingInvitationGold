@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+<defs>
+<filter id="paper" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency=".9 .75" numOctaves="3" seed="7" result="n"/>
+  <feDiffuseLighting in="n" surfaceScale="1.1" lighting-color="#fff" result="lit"><feDistantLight azimuth="235" elevation="58"/></feDiffuseLighting>
+  <feColorMatrix in="lit" values="0 0 0 0 .55  0 0 0 0 .52  0 0 0 0 .48  -1 0 0 0 .92" result="g"/>
+  <feComposite in="g" in2="SourceGraphic" operator="in"/>
+</filter>
+<filter id="lift" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx=".6" dy="1.4" stdDeviation="1.1" flood-color="#5a4d3c" flood-opacity=".22"/></filter>
+<filter id="fold" x="-5%" y="-10%" width="110%" height="120%"><feDropShadow dx="0" dy="-1.2" stdDeviation="2.2" flood-color="#4a4036" flood-opacity=".16"/></filter>
+<pattern id="liner" width="36" height="36" patternUnits="userSpaceOnUse">
+  <rect width="36" height="36" fill="#fbfaf8"/>
+  <g fill="none" stroke="#e3ddd3" stroke-width=".8">
+    <circle cx="18" cy="18" r="7"/><circle cx="18" cy="18" r="2.2"/>
+    <path d="M18 11c2-4 6-4 6 0M18 25c-2 4-6 4-6 0M11 18c-4-2-4-6 0-6M25 18c4 2 4 6 0 6"/>
+    <circle cx="0" cy="0" r="4"/><circle cx="36" cy="0" r="4"/><circle cx="0" cy="36" r="4"/><circle cx="36" cy="36" r="4"/>
+  </g>
+  <g fill="#e6e0d7"><circle cx="18" cy="4" r="1"/><circle cx="18" cy="32" r="1"/><circle cx="4" cy="18" r="1"/><circle cx="32" cy="18" r="1"/></g>
+</pattern>
+
+</defs>
+
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c241c" stop-opacity=".30"/><stop offset=".18" stop-color="#2c241c" stop-opacity=".12"/><stop offset=".55" stop-color="#2c241c" stop-opacity=".03"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+<rect width="600" height="420" rx="6" fill="#f6f4f0"/>
+<rect x="14" y="10" width="572" height="400" fill="url(#liner)"/>
+<rect width="600" height="420" rx="6" fill="url(#bg)"/>
+</svg>

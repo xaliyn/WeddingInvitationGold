@@ -1,0 +1,11 @@
+# Only the website (index.html + assets/) goes online.
+google-apps-script.gs
+.DS_Store
+**/.DS_Store
+.git
+.vercel
+.vscode
+.env*
+.gitignore
+.vercelignore
+.env*
